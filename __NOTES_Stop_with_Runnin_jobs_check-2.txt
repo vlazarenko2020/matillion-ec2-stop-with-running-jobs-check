@@ -1,0 +1,40 @@
+
+How to test  
+    API Timeout 
+is down but 
+    EC2 
+is up
+
+It happens when Matillion-DEV matillion process is down (unresponsive) but Matillion-DEV EC2 is still up.
+
+I am using 
+    event-Mat-TEST.json
+
+
+1. 
+I need to go to the "Secrets Manager" and modify the entry
+    /matillion/test
+I need to modify secrets Key/Value for 
+    url
+from
+    https://matillion-dev.example.com:8443/rest/v1
+to
+    https://matillion-dev-wrong.example.com:8443/rest/v1
+It means API call will go to wrong API and it will be timeout.
+
+
+2.
+In the same terminal, load the environment variables first (once per terminal session):
+    . ./project.env
+I run
+    ./main-0-EC2StopWithMatillionRunningJobsCheck.py
+and select 
+     - 2 - event-Mat-TEST.json
+I should see:
+    Failed to connect to the API server 'https://matillion-dev-wrong.example.com:8443/rest/v1/group'. The server might be down.
+    As API cannot be reached, EC2-TEST Instance 'Amazon-Linux-2023-Test-Instance' will be stopped without running jobs check.
+
+
+3. 
+DON'T FORGET TO MODIFY url BACK TO REAL VALUE:
+    https://matillion-dev.example.com:8443/rest/v1

@@ -1,0 +1,9 @@
+
+
+At 10am I do 1st attempt to stop Mat-PROD.
+If it is success and when I do second attempt at 10:30 Mat-PROD is already down.
+So I cannot check it it has running jobs using API call.
+So Lambda throws error and eventually expires (stops)
+
+I need to check Mat-PROD status as the first step of this Lambda.
+

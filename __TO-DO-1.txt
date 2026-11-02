@@ -1,0 +1,23 @@
+
+Implement putting line to HISTORY file after each run.
+Similar approach was implemented for 
+    - MatillionS3SQSAdditionToTrigger
+
+I added code:
+        def f_populate_history_file(f_flag_file_bez_path,
+                                    f_flag_file_bucket,
+                                    f_flag_file_prefix,
+                                    l_datafiles_exist_in_bucket,
+                                    l_datafiles_dont_exist_in_bucket,
+                                    f_s3_history_file,
+                                    yes_no):
+
+to Module:
+    Modules_common/Layer_boto3.py 
+But I didn't use this function in MatillionStart or MatillionStop
+The function 
+    f_populate_history_file
+needs to be modified because I just copy/paste it from other program.
+See exmple of implementation in:
+    - MatillionS3SQSAdditionToTrigger
+

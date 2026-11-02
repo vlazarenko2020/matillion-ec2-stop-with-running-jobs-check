@@ -1,0 +1,23 @@
+[system]
+PROD = { "e_system": "PROD",
+        "e_region": "us-east-1",
+        "e_force": "no",
+        "e_email_to": "alerts@example.com",
+        "e_email_to_developers": "developers@example.com",
+        "e_lambda_arn_to_call": "arn:aws:lambda:us-east-1:123456789012:function:LambdaEC2StopWithRunningJobsCheck-PROD"        
+        }
+DEV = { "e_system": "DEV",
+        "e_region": "us-east-1",
+        "e_force": "no",
+        "e_email_to": "user@example.com",
+        "e_email_to_developers": "user@example.com",
+        "e_lambda_arn_to_call": "arn:aws:lambda:us-east-1:123456789012:function:LambdaEC2StopWithRunningJobsCheck-DEV"        
+        }
+TEST = {
+        "e_system": "TEST",
+        "e_region": "us-east-1",
+        "e_force": "no",
+        "e_email_to": "user@example.com",
+        "e_email_to_developers": "user@example.com",
+        "e_lambda_arn_to_call": "arn:aws:lambda:us-east-1:123456789012:function:LambdaEC2StopWithRunningJobsCheck-TEST"        
+        }        

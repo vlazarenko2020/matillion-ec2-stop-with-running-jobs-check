@@ -1,0 +1,24 @@
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Generated output
+build.log
+output.json
+response.json
+
+# Local environment
+.python-version
+
+# Event/payload files (contain real email addresses).
+# Commit sanitized copies as *.example.json instead.
+event-*.json
+payload*.json
+!*.example.json
+
+# Real configuration (commit the *.example versions instead)
+project.env
+z_config_CallEC2StopWithMatillionRunningJobsCheck.ini
+
+# Plain-text deploy notes (commit the encrypted __DEPLOY_NEW_VERSION.txt.age instead)
+__DEPLOY_NEW_VERSION.txt

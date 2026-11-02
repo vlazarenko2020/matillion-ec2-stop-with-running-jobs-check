@@ -1,0 +1,55 @@
+
+I can test stop-EC2 without touching Matillion EC2 Servers.
+I use "Amazon Linux 2023 Testing" EC2 for testing.
+    - Payload file: event-Mat-TEST.json
+    - Before running any main-0-*.py, load the environment variables in the same terminal:
+          . ./project.env
+      (see project.env.example)
+
+{
+  "e_system": "TEST",
+  "e_region": "us-east-1",
+  "e_force": "no",
+  "e_email_to": "user@example.com",
+  "e_email_to_developers": "user@example.com"
+}
+
+
+The program connects to Secrets Manager.
+The secret /matillion/<env> must contain:
+  user        (Matillion API user)
+  password
+  instanceid  (EC2 instance to start/stop)
+  url         (Matillion REST API base URL, e.g. https://matillion-dev.example.com:8443/rest/v1 for DEV)
+
+
+So Matillion-DEV is checked for running jobs 
+but
+"Amazon Linux 2023 Testing" will be stopped or started.
+
+
+----- Matillion-TEST/Shutdown_With_Running_Jobs-Allowed-ECops_Managed_File.txt file ---
+If file:
+  - Matillion-TEST/Shutdown_With_Running_Jobs-Allowed-ECops_Managed_File.txt
+exists in S3 bucket 
+  - vvv-lambda-devops
+shutdown with running jobs is allowed.
+
+Why do I need this file:
+The file exists in 
+  - DEV
+  - TEST 
+to allow fast shutdown even if there are running jobs. It is DEV so I don't care if I kill a running job.
+But the file doesn't exist in 
+  - PROD 
+because I don't want to shutdown when PROD jobs are running.
+
+
+----- Dry-Run.txt file ------
+If "Dry-Run.txt" file exists - shutdown (with or without running jobs) is not allowed.
+Ecops use this file to prevent shutdown during scheduled stop time:
+  - 10:00 
+  - . . .
+  - 12:30
+
+

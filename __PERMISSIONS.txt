@@ -1,0 +1,10 @@
+
+I needed to add TEST instance 'Amazon-Linux-2023-Test-Instance'
+    i-0123456789abcdef0
+to Lambda Execution Role
+    arn:aws:iam::123456789012:role/Lambda-MatillionRJobs
+Note:
+    PROD 
+    DEV 
+instances where already allowed to be start/stopped using the role.
+

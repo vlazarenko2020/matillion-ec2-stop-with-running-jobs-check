@@ -1,0 +1,27 @@
+FROM public.ecr.aws/lambda/python:3.11
+
+# Copy requirements.txt
+COPY requirements-EC2StopWithMatillionRunningJobsCheck.txt ${LAMBDA_TASK_ROOT}
+
+# Copy function code
+COPY lambda_function_EC2StopWithMatillionRunningJobsCheck.py ${LAMBDA_TASK_ROOT}/lambda_function.py
+
+COPY z_config.py ${LAMBDA_TASK_ROOT}/
+
+COPY Modules_common/*.py ${LAMBDA_TASK_ROOT}/Modules_common/
+
+COPY Modules_stop/*.py ${LAMBDA_TASK_ROOT}/Modules_stop/
+
+RUN ls ${LAMBDA_TASK_ROOT}
+
+RUN ls ${LAMBDA_TASK_ROOT}/Modules_common
+
+RUN ls ${LAMBDA_TASK_ROOT}/Modules_stop
+
+# Install the specified packages
+RUN pip install -r requirements-EC2StopWithMatillionRunningJobsCheck.txt
+
+RUN pip list
+
+# Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
+CMD [ "lambda_function.lambda_handler" ]
